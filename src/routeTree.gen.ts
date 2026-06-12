@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppSocialRouteImport } from './routes/_app.social'
 import { Route as AppOrdersRouteImport } from './routes/_app.orders'
 import { Route as AppInboxRouteImport } from './routes/_app.inbox'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
@@ -35,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppSocialRoute = AppSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppOrdersRoute = AppOrdersRouteImport.update({
   id: '/orders',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/inbox': typeof AppInboxRoute
   '/orders': typeof AppOrdersRoute
+  '/social': typeof AppSocialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/inbox': typeof AppInboxRoute
   '/orders': typeof AppOrdersRoute
+  '/social': typeof AppSocialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inbox': typeof AppInboxRoute
   '/_app/orders': typeof AppOrdersRoute
+  '/_app/social': typeof AppSocialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,8 +96,16 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/inbox'
     | '/orders'
+    | '/social'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot-password' | '/login' | '/dashboard' | '/inbox' | '/orders'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/dashboard'
+    | '/inbox'
+    | '/orders'
+    | '/social'
   id:
     | '__root__'
     | '/'
@@ -98,6 +115,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/inbox'
     | '/_app/orders'
+    | '/_app/social'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -137,6 +155,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/social': {
+      id: '/_app/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof AppSocialRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/orders': {
       id: '/_app/orders'
       path: '/orders'
@@ -165,12 +190,14 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppInboxRoute: typeof AppInboxRoute
   AppOrdersRoute: typeof AppOrdersRoute
+  AppSocialRoute: typeof AppSocialRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppInboxRoute: AppInboxRoute,
   AppOrdersRoute: AppOrdersRoute,
+  AppSocialRoute: AppSocialRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

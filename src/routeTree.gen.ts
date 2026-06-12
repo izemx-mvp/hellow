@@ -15,6 +15,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSocialRouteImport } from './routes/_app.social'
 import { Route as AppOrdersRouteImport } from './routes/_app.orders'
+import { Route as AppInsightsRouteImport } from './routes/_app.insights'
 import { Route as AppInboxRouteImport } from './routes/_app.inbox'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
@@ -49,6 +50,11 @@ const AppOrdersRoute = AppOrdersRouteImport.update({
   path: '/orders',
   getParentRoute: () => AppRoute,
 } as any)
+const AppInsightsRoute = AppInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppInboxRoute = AppInboxRouteImport.update({
   id: '/inbox',
   path: '/inbox',
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof AppCalendarRoute
   '/dashboard': typeof AppDashboardRoute
   '/inbox': typeof AppInboxRoute
+  '/insights': typeof AppInsightsRoute
   '/orders': typeof AppOrdersRoute
   '/social': typeof AppSocialRoute
 }
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof AppCalendarRoute
   '/dashboard': typeof AppDashboardRoute
   '/inbox': typeof AppInboxRoute
+  '/insights': typeof AppInsightsRoute
   '/orders': typeof AppOrdersRoute
   '/social': typeof AppSocialRoute
 }
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/_app/calendar': typeof AppCalendarRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inbox': typeof AppInboxRoute
+  '/_app/insights': typeof AppInsightsRoute
   '/_app/orders': typeof AppOrdersRoute
   '/_app/social': typeof AppSocialRoute
 }
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/dashboard'
     | '/inbox'
+    | '/insights'
     | '/orders'
     | '/social'
   fileRoutesByTo: FileRoutesByTo
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/dashboard'
     | '/inbox'
+    | '/insights'
     | '/orders'
     | '/social'
   id:
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/_app/calendar'
     | '/_app/dashboard'
     | '/_app/inbox'
+    | '/_app/insights'
     | '/_app/orders'
     | '/_app/social'
   fileRoutesById: FileRoutesById
@@ -193,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppOrdersRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/insights': {
+      id: '/_app/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof AppInsightsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/inbox': {
       id: '/_app/inbox'
       path: '/inbox'
@@ -229,6 +248,7 @@ interface AppRouteChildren {
   AppCalendarRoute: typeof AppCalendarRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppInboxRoute: typeof AppInboxRoute
+  AppInsightsRoute: typeof AppInsightsRoute
   AppOrdersRoute: typeof AppOrdersRoute
   AppSocialRoute: typeof AppSocialRoute
 }
@@ -238,6 +258,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppCalendarRoute: AppCalendarRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppInboxRoute: AppInboxRoute,
+  AppInsightsRoute: AppInsightsRoute,
   AppOrdersRoute: AppOrdersRoute,
   AppSocialRoute: AppSocialRoute,
 }

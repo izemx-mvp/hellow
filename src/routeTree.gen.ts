@@ -14,6 +14,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppSocialRouteImport } from './routes/_app.social'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
 import { Route as AppOrdersRouteImport } from './routes/_app.orders'
 import { Route as AppInsightsRouteImport } from './routes/_app.insights'
 import { Route as AppInboxRouteImport } from './routes/_app.inbox'
@@ -44,6 +45,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppSocialRoute = AppSocialRouteImport.update({
   id: '/social',
   path: '/social',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppOrdersRoute = AppOrdersRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/inbox': typeof AppInboxRoute
   '/insights': typeof AppInsightsRoute
   '/orders': typeof AppOrdersRoute
+  '/settings': typeof AppSettingsRoute
   '/social': typeof AppSocialRoute
 }
 export interface FileRoutesByTo {
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/inbox': typeof AppInboxRoute
   '/insights': typeof AppInsightsRoute
   '/orders': typeof AppOrdersRoute
+  '/settings': typeof AppSettingsRoute
   '/social': typeof AppSocialRoute
 }
 export interface FileRoutesById {
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/_app/inbox': typeof AppInboxRoute
   '/_app/insights': typeof AppInsightsRoute
   '/_app/orders': typeof AppOrdersRoute
+  '/_app/settings': typeof AppSettingsRoute
   '/_app/social': typeof AppSocialRoute
 }
 export interface FileRouteTypes {
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/inbox'
     | '/insights'
     | '/orders'
+    | '/settings'
     | '/social'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/inbox'
     | '/insights'
     | '/orders'
+    | '/settings'
     | '/social'
   id:
     | '__root__'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/_app/inbox'
     | '/_app/insights'
     | '/_app/orders'
+    | '/_app/settings'
     | '/_app/social'
   fileRoutesById: FileRoutesById
 }
@@ -208,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/social'
       fullPath: '/social'
       preLoaderRoute: typeof AppSocialRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/orders': {
@@ -270,6 +289,7 @@ interface AppRouteChildren {
   AppInboxRoute: typeof AppInboxRoute
   AppInsightsRoute: typeof AppInsightsRoute
   AppOrdersRoute: typeof AppOrdersRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppSocialRoute: typeof AppSocialRoute
 }
 
@@ -281,6 +301,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppInboxRoute: AppInboxRoute,
   AppInsightsRoute: AppInsightsRoute,
   AppOrdersRoute: AppOrdersRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppSocialRoute: AppSocialRoute,
 }
 

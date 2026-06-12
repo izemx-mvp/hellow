@@ -1,0 +1,8 @@
+# Hellow AI Suite
+
+> Plateforme SaaS d'intelligence artificielle pour Hellow Pâtisserie : automatisation des conversations clients, qualification des commandes, gestion social media et génération de contenu.
+
+Hellow AI Suite est un centre d'opérations IA (MVP de démonstration) pour la marque de pâtisserie premium Hellow.
+
+## Pages
+- [Connexion](/login): accès à la plateforme (démo: admin@hellow.ma / 123456)

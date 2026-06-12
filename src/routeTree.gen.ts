@@ -9,38 +9,225 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppSocialRouteImport } from './routes/_app.social'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppOrdersRouteImport } from './routes/_app.orders'
+import { Route as AppInsightsRouteImport } from './routes/_app.insights'
+import { Route as AppInboxRouteImport } from './routes/_app.inbox'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppCatalogRouteImport } from './routes/_app.catalog'
+import { Route as AppCalendarRouteImport } from './routes/_app.calendar'
+import { Route as AppApprovalsRouteImport } from './routes/_app.approvals'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppSocialRoute = AppSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOrdersRoute = AppOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInsightsRoute = AppInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInboxRoute = AppInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCatalogRoute = AppCatalogRouteImport.update({
+  id: '/catalog',
+  path: '/catalog',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppApprovalsRoute = AppApprovalsRouteImport.update({
+  id: '/approvals',
+  path: '/approvals',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/approvals': typeof AppApprovalsRoute
+  '/calendar': typeof AppCalendarRoute
+  '/catalog': typeof AppCatalogRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/inbox': typeof AppInboxRoute
+  '/insights': typeof AppInsightsRoute
+  '/orders': typeof AppOrdersRoute
+  '/settings': typeof AppSettingsRoute
+  '/social': typeof AppSocialRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/approvals': typeof AppApprovalsRoute
+  '/calendar': typeof AppCalendarRoute
+  '/catalog': typeof AppCatalogRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/inbox': typeof AppInboxRoute
+  '/insights': typeof AppInsightsRoute
+  '/orders': typeof AppOrdersRoute
+  '/settings': typeof AppSettingsRoute
+  '/social': typeof AppSocialRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/login': typeof LoginRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_app/approvals': typeof AppApprovalsRoute
+  '/_app/calendar': typeof AppCalendarRoute
+  '/_app/catalog': typeof AppCatalogRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/inbox': typeof AppInboxRoute
+  '/_app/insights': typeof AppInsightsRoute
+  '/_app/orders': typeof AppOrdersRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/social': typeof AppSocialRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/sitemap.xml'
+    | '/approvals'
+    | '/calendar'
+    | '/catalog'
+    | '/dashboard'
+    | '/inbox'
+    | '/insights'
+    | '/orders'
+    | '/settings'
+    | '/social'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/forgot-password'
+    | '/login'
+    | '/sitemap.xml'
+    | '/approvals'
+    | '/calendar'
+    | '/catalog'
+    | '/dashboard'
+    | '/inbox'
+    | '/insights'
+    | '/orders'
+    | '/settings'
+    | '/social'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/forgot-password'
+    | '/login'
+    | '/sitemap.xml'
+    | '/_app/approvals'
+    | '/_app/calendar'
+    | '/_app/catalog'
+    | '/_app/dashboard'
+    | '/_app/inbox'
+    | '/_app/insights'
+    | '/_app/orders'
+    | '/_app/settings'
+    | '/_app/social'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  LoginRoute: typeof LoginRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +235,105 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/social': {
+      id: '/_app/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof AppSocialRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/orders': {
+      id: '/_app/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof AppOrdersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/insights': {
+      id: '/_app/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof AppInsightsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/inbox': {
+      id: '/_app/inbox'
+      path: '/inbox'
+      fullPath: '/inbox'
+      preLoaderRoute: typeof AppInboxRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/catalog': {
+      id: '/_app/catalog'
+      path: '/catalog'
+      fullPath: '/catalog'
+      preLoaderRoute: typeof AppCatalogRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/calendar': {
+      id: '/_app/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/approvals': {
+      id: '/_app/approvals'
+      path: '/approvals'
+      fullPath: '/approvals'
+      preLoaderRoute: typeof AppApprovalsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppApprovalsRoute: typeof AppApprovalsRoute
+  AppCalendarRoute: typeof AppCalendarRoute
+  AppCatalogRoute: typeof AppCatalogRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppInboxRoute: typeof AppInboxRoute
+  AppInsightsRoute: typeof AppInsightsRoute
+  AppOrdersRoute: typeof AppOrdersRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSocialRoute: typeof AppSocialRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppApprovalsRoute: AppApprovalsRoute,
+  AppCalendarRoute: AppCalendarRoute,
+  AppCatalogRoute: AppCatalogRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppInboxRoute: AppInboxRoute,
+  AppInsightsRoute: AppInsightsRoute,
+  AppOrdersRoute: AppOrdersRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSocialRoute: AppSocialRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  LoginRoute: LoginRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
